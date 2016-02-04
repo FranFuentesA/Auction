@@ -101,4 +101,21 @@ public class Auction
             return null;
         }
     }
+    
+    /**
+     * muestra por pantalla los detalles de todos los items que se estén subastando actualmente.
+     */
+    
+    public void close ()
+    {
+        for(Lot lotes : lots) {
+            if (lotes.getHighestBid() == null) {
+                System.out.println("Descripcion :" + lotes.toString());
+            }
+            else {
+                System.out.println("Descripcion :" + lotes.toString());
+                System.out.println("Postor: " + lotes.getHighestBid().getBidder().getName());
+            }
+        }
+    }
 }
