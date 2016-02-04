@@ -14,6 +14,8 @@ public class Auction
     // The number that will be given to the next lot entered
     // into this auction.
     private int nextLotNumber;
+    
+     private ArrayList<Lot> unSolds;
 
     /**
      * Create a new auction.
@@ -22,6 +24,7 @@ public class Auction
     {
         lots = new ArrayList<Lot>();
         nextLotNumber = 1;
+        unSolds = new ArrayList<>();
     }
 
     /**
@@ -110,12 +113,27 @@ public class Auction
     {
         for(Lot lotes : lots) {
             if (lotes.getHighestBid() == null) {
-                System.out.println("Descripcion :" + lotes.toString());
+                System.out.println("No hay objetos para subastar");
             }
             else {
                 System.out.println("Descripcion :" + lotes.toString());
                 System.out.println("Postor: " + lotes.getHighestBid().getBidder().getName());
             }
         }
+    }
+    
+    /**
+     * devuelve una colección de todos los items por los que no ha habido ninguna puja en este momento.
+     */
+    public ArrayList<Lot> unsold()
+    {
+        for (Lot lotes :lots)
+        {
+            if (lotes.getHighestBid() == null)
+            {
+                unSolds.add(lotes);
+            }
+        }
+        return unSolds;
     }
 }
